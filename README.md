@@ -60,6 +60,27 @@ Each display has its own tab. Change a value, then click **Apply** at the bottom
 you do. After you apply a new resolution, refresh rate, rotation or mirroring, DisplayKeeper asks whether to keep it.
 If you do not answer within 15 seconds, the previous settings come back, so you are safe even if the screen goes blank.
 
+To change the arrangement, drag a display in the diagram on the **Overview** tab. It snaps to nearby edges, and goes
+back if you drop it over another display.
+
+### Use from the Shortcuts app
+
+Two actions are available: **Apply DisplayKeeper File** and **Save Current Display Settings**. Both run without
+opening a window. The save action returns a `.dkset` file, so use the **Save File** action to choose where it goes.
+
+### Use from the command line
+
+When installed with Homebrew, the `displaykeeper` command is available.
+
+```bash
+displaykeeper apply ~/Displays.dkset   # apply a file
+displaykeeper save ~/Displays.dkset    # save all displays
+displaykeeper dump                     # print the current state
+```
+
+The exit status is 0 for success, 1 when some settings were not applied, and 2 for an error.
+Without Homebrew, run `/Applications/DisplayKeeper.app/Contents/Resources/displaykeeper`.
+
 ---
 
 ## Features
@@ -77,7 +98,8 @@ If you do not answer within 15 seconds, the previous settings come back, so you 
 
 ## Notes
 
-- DDC/CI (brightness and contrast of external monitors) works only with monitors that support it
+- DDC/CI (brightness and contrast of external monitors) works only with monitors that support it. It may not work
+  through a USB-C to HDMI adapter, a hub or a switch. When it does not, the display's tab shows the reason
 - Reference modes such as HDR Video or Internet & Web (sRGB) fix the brightness of the built-in display, so the
   brightness is not changed while one of them is selected
 - The resolution and rotation of a display that mirrors another follow the mirror source and are not changed separately
